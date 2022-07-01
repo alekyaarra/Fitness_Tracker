@@ -36,16 +36,38 @@ gender.grid(row=3,column=1)
 def myclick4():
     mylabel4=Label(root, text="Your entered gender is " + gender.get())
     mylabel4.grid(row=3,column=2)
-mybutton4= Button(root, text="Enter your Gender (male or female)",  width=35,command=myclick4)
+mybutton4= Button(root, text="Enter your Gender (Male or Female)",  width=35,command=myclick4)
 mybutton4.grid(row=3,column=0)
+g=gender.get()
 
-basal=0
-if gender.get()== "male":
+def BMRcalc(w,h,a,g):
+    global basal
+    basal=0
+    if str(g).lower()== "male":
         basal=int((10*w)+(6.25*h)-(5*a)+5)
-elif gender.get()=="female":
+    elif str(g).lower()=="female":
         basal=int((10*w)+(6.25*h)-(5*a)-161)
+    mylabel5=Label(root, text="Your Basal Metabolic Rate is " + str(basal))
+    mylabel5.grid(row=5,column=1)
+mybutton5=Button(root,text="Calculate Basal Metabolic rate", command=lambda: BMRcalc(float(weight.get()),float(height.get()),float(age.get()),gender.get()))
+mybutton5.grid(row=4,column=1)
 
-mylabel5=Label(root, text="Your Basal Metabolic Rate is " + str(basal))
-mylabel5.grid(row=5,column=1)
+mylabel6=Label(root, text="Enter the appripriate number corresponding to your level of exercise")
+mylabel6.grid(row=6,column=1)
+
+mylabel7=Label(root, text="(1) - Sedentary")
+mylabel7.grid(row=7,column=1)
+
+mylabel8=Label(root, text="(2) - Exercise 1-3 times a week")
+mylabel8.grid(row=8,column=1)
+
+mylabel9=Label(root, text="(3) - Exercise 4-5 times a week")
+mylabel9.grid(row=9,column=1)
+
+mylabel10=Label(root, text="(4) - Daily Exercise or Intense Exercise 3-4 times a week")
+mylabel10.grid(row=10,column=1)
+
+mylabel11=Label(root, text="(5) - Intense Exercise 6 times a week")
+mylabel11.grid(row=11,column=1)
 
 root.mainloop()

@@ -51,13 +51,13 @@ def open_wl():
     my_tree.heading("food_dinner",text='Dinner', anchor=CENTER)
 
     food=[
-        ['1','Cucumber Detox Wate','Oats Porridge in Skimmed Milk','Skimmed Milk Panner','Dal,Gajar Matar Sabzi,Roti','Cut Fruits, Buttermilk','Dal,Lauki Sabzi,Roti'],
-        ['2','Cucumber Detox Wate','Curd, Mixed Vegetable Stuffed Roti','Skim Milk Yoghurt','Lentil Curry,Methi Rice','Apple,buttermillk','Sauteed Vegetables with Paneer,Roti'],
-        ['3','Cucumber Detox Wate','Skim Milk Yoghurt, Multigrain Toast','Skimmed Milk Panner','Sauteed Vegetables with Paneer,Roti','Banana,Buttermilk','Lentil Curry, Methi Rice'],
-        ['4','Cucumber Detox Wate','Fruit and Nuts Yogurt Smoothie','Skim Milk Yoghurt','Green Gram Whole Dal Cooked,Bhindi sabzi','Orange, Buttermilk','Palak Chole, Steamed Rice'],
-        ['5','Cucumber Detox Wate','Skimmed Milk, Peas Poha','Skimmed Milk Panner','Low Fat Paneer Curry, Missi Roti','Papaya, Buttermilk','Curd, Aloo Baingan Tamatar Ki Sabzi'],
-        ['6','Cucumber Detox Wate','Mixed Sambar, Idli','Skim Milk Yoghurt','Curd, Aloo Baingan Tamatar Ki Sabzi','Cut Fruits, Buttermilk','Green Gram Whole Dal Cooked, Bhindi sabzi'],
-        ['7','Cucumber Detox Wate','Besan Chilla','Skimmed Milk Panner','Palak Chole, Steamed Rice','Apple, Buttermilk','Low Fat Paneer Curry, Missi Roti']
+        ['1','Cucumber Detox Water','Oats Porridge in Skimmed Milk','Skimmed Milk Panner','Dal,Gajar Matar Sabzi,Roti','Cut Fruits, Buttermilk','Dal,Lauki Sabzi,Roti'],
+        ['2','Cucumber Detox Water','Curd, Mixed Vegetable Stuffed Roti','Skim Milk Yoghurt','Lentil Curry,Methi Rice','Apple,buttermillk','Sauteed Vegetables with Paneer,Roti'],
+        ['3','Cucumber Detox Water','Skim Milk Yoghurt, Multigrain Toast','Skimmed Milk Panner','Sauteed Vegetables with Paneer,Roti','Banana,Buttermilk','Lentil Curry, Methi Rice'],
+        ['4','Cucumber Detox Water','Fruit and Nuts Yogurt Smoothie','Skim Milk Yoghurt','Green Gram Whole Dal Cooked,Bhindi sabzi','Orange, Buttermilk','Palak Chole, Steamed Rice'],
+        ['5','Cucumber Detox Water','Skimmed Milk, Peas Poha','Skimmed Milk Panner','Low Fat Paneer Curry, Missi Roti','Papaya, Buttermilk','Curd, Aloo Baingan Tamatar Ki Sabzi'],
+        ['6','Cucumber Detox Water','Mixed Sambar, Idli','Skim Milk Yoghurt','Curd, Aloo Baingan Tamatar Ki Sabzi','Cut Fruits, Buttermilk','Green Gram Whole Dal Cooked, Bhindi sabzi'],
+        ['7','Cucumber Detox Water','Besan Chilla','Skimmed Milk Panner','Palak Chole, Steamed Rice','Apple, Buttermilk','Low Fat Paneer Curry, Missi Roti']
     ]
 
     count=0
@@ -66,16 +66,21 @@ def open_wl():
         count+=1
 
     a=7
-    my_tree.insert(0,index='end',iid=a,values=('','1cal','2cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(1,index='end',iid=(a+1),values=('','1cal','2cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(2,index='end',iid=(a+2),values=('','1cal','1cal','3cal','1cal','1cal','1cal'))
-    my_tree.insert(3,index='end',iid=(a+3),values=('','1cal','3cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(4,index='end',iid=(a+4),values=('','1cal','1cal','4cal','1cal','1cal','1cal'))
-    my_tree.insert(5,index='end',iid=(a+5),values=('','1cal','1cal','5cal','1cal','1cal','1cal'))
-    my_tree.insert(6,index='end',iid=(a+6),values=('','1cal','1cal','6cal','1cal','1cal','1cal'))
+    my_tree.insert(0,index='end',iid=a,values=('','nearly 0 cal','200cal per serving','215cal per 30g','157cal in 1 1/2 cup','200cal per serving','100cal per 50g'),tags='child')
+    my_tree.insert(1,index='end',iid=(a+1),values=('','nearly 0 cal','200cal per serving','137cal in 1 cup','250cal per serving','50 cal per 100 ml','250 cal per serving'),tags='child')
+    my_tree.insert(2,index='end',iid=(a+2),values=('','nearly 0 cal','230cal per serving','215cal per 30','200cal per serving','68 cal per 100 ml','350 cal per serving'),tags='child')
+    my_tree.insert(3,index='end',iid=(a+3),values=('','nearly 0 cal','200cal per serving','137cal in 1 cup','200cal per serving','57 cal per 100 ml','300 cal per serving'),tags='child')
+    my_tree.insert(4,index='end',iid=(a+4),values=('','nearly 0 cal','220cal per serving','215cal per 30','300cal per serving','62 cal per 100 ml','220 cal per serving'),tags='child')
+    my_tree.insert(5,index='end',iid=(a+5),values=('','nearly 0 cal','250cal per serving','137cal in 1 cup','220cal per serving','55 cal per 100 ml','250 cal per serving'),tags='child')
+    my_tree.insert(6,index='end',iid=(a+6),values=('','nearly 0 cal','150cal per serving','215cal per 30','200cal per serving','50 cal per 100 ml','230 cal per serving'),tags='child')
 
-    tree_scroll.config(command=my_tree.yview)
+    my_tree.tag_configure('child',background='#DACEB7' )
     my_tree.pack()
+    tree_scroll.config(command=my_tree.yview)
+
+    l8=Label(top,text="your total colorie intake per week = 1500 x 7 cal = 10,500 cal")
+    l8.pack(anchor=CENTER)
+    top.mainloop()
 
 def open_wg():
     style= ttk.Style()
@@ -145,17 +150,20 @@ def open_wg():
         count+=1
     
     a=7
-    my_tree.insert(0,index='end',iid=a,values=('','1cal','2cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(1,index='end',iid=(a+1),values=('','1cal','2cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(2,index='end',iid=(a+2),values=('','1cal','1cal','3cal','1cal','1cal','1cal'))
-    my_tree.insert(3,index='end',iid=(a+3),values=('','1cal','3cal','1cal','1cal','1cal','1cal'))
-    my_tree.insert(4,index='end',iid=(a+4),values=('','1cal','1cal','4cal','1cal','1cal','1cal'))
-    my_tree.insert(5,index='end',iid=(a+5),values=('','1cal','1cal','5cal','1cal','1cal','1cal'))
-    my_tree.insert(6,index='end',iid=(a+6),values=('','1cal','1cal','6cal','1cal','1cal','1cal'))
+    my_tree.insert(0,index='end',iid=a,values=('','7cal per almond','71cal per pancake','19cal per 100ml','200cal per serving','105cal','300cal'),tags='child')
+    my_tree.insert(1,index='end',iid=(a+1),values=('','7cal per almond','100cal per serving','112cal per 100 ml','200cal per serving','50cal','250cal'),tags='child')
+    my_tree.insert(2,index='end',iid=(a+2),values=('','7cal per almond','57cal per egg','20cal per 200 ml','100cal per 250g','50cal per 25g','250cal per serving'),tags='child')
+    my_tree.insert(3,index='end',iid=(a+3),values=('','7cal per almond','100cal','19cal per 100ml','250cal per serving','100cal per serving','200cal per 100ml'),tags='child')
+    my_tree.insert(4,index='end',iid=(a+4),values=('','7cal per almond','112cal per 100ml','200cal per 100ml','250cal per serving','50cal per 25g','250 cal per 100 ml'),tags='child')
+    my_tree.insert(5,index='end',iid=(a+5),values=('','7cal per almond','100cal per serving','19cal per 100ml','100cal per 100g','50cal per 25g','200cal per serving'),tags='child')
+    my_tree.insert(6,index='end',iid=(a+6),values=('','7cal per almond','250cal per 100ml','19cal per 100ml','200cal per serving','100cal per 50g','200cal per serving'),tags='child')
     
+    my_tree.tag_configure('child',background='#DACEB7' )
     my_tree.pack()
     tree_scroll.config(command=my_tree.yview)
     
+    l8=Label(top,text="your total colorie intake per week = 2500 x 7 cal = 17,500 cal")
+    l8.pack(anchor=CENTER)
     top.mainloop()
 
 root = Tk()

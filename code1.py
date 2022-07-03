@@ -168,8 +168,6 @@ def open_wg():
 
 root = Tk()
 root.title('diet plan')
-# style= root.Style()
-# style.theme_use('clam')
 b1=Button(root, text="Weight loss",command=open_wl).pack()
 b2=Button(root, text='Weight gain',command=open_wg).pack()
 root.mainloop()

@@ -1,4 +1,3 @@
-from cProfile import label
 from tkinter import *
 from tkinter import ttk
 
@@ -168,6 +167,7 @@ def open_wg():
 
 root = Tk()
 root.title('diet plan')
-b1=Button(root, text="Weight loss",command=open_wl).pack()
-b2=Button(root, text='Weight gain',command=open_wg).pack()
+root.geometry("200x150")
+b1=Button(root, text="Weight loss",width=10,command=open_wl).pack(pady=20)
+b2=Button(root, text='Weight gain',width=10,command=open_wg).pack(pady=20)
 root.mainloop()

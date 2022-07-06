@@ -6,8 +6,8 @@ from cProfile import label
 from tkinter import ttk
 
 window=Tk()
-window.title("A Helping Hand Toward Your Radient Health")
-window.state='zoomed'
+window.title("A Helping Hand Toward Your Radiant Health")
+window.geometry("1920x1080")
 window.config(padx=10,pady=10)
 
 my_pic=Image.open("health4.jpg")
@@ -21,33 +21,61 @@ logo=Image.open("logo2.png")
 resize_l=logo.resize((150,150),Image.ANTIALIAS)
 new_logo=ImageTk.PhotoImage(resize_l)
 logo_button=Button(window,image=new_logo,bg="light blue",borderwidth="10")
-logo_button.place(x=550,y=400)
+logo_button.place(x=700,y=400)
 
 my_text=Label(window,text=''' The best INVESTMENT you can ever make
 is in your OWN HEALTH ''',background="light blue",font=("century",20,"bold"))
-my_text.place(x=250,y=250)
+my_text.place(x=500,y=250)
 my_text.config(padx=10,pady=10)
 
 def button_clicked():
-    new_window=Tk()
-    new_window.state='zoomed'
-    # style= ttk.Style()
-    # style.theme_use('clam')
+    global new_window
+    global logo2
+    global icon 
+
+    new_window=Toplevel(window)
+    new_window.title("A Helping Hand Toward Your Radiant Health")
+    new_window.geometry("1920x1080")
+    new_window.config(bg="#eaebc3")
+
+    logo2=ImageTk.PhotoImage(Image.open("bg6.png"))
+    Label(new_window, image=logo2).pack()
+    
     
     app_des=Label(new_window,text='''      An activity tracker, also known as a fitness tracker,is a device 
             or application for monitoring and tracking fitness-related metrics 
             such as distance walked or run,
             calorie consumption,BMI tracker,etc...''',font=("Tempus Sans ITC",20,"bold"))
-    app_des.place(x=200,y=200)
-    app_des.config(padx=10)
+    app_des.place(x=0,y=200)
+    app_des.config(padx=10,bg="#eaebc3")
     
-    app_title=Label(new_window,text="Fitness Tracker",font=("Tempus Sans ITC",40,"bold"))
+    app_title=Label(new_window,text="Fitness Tracker",font=("Tempus Sans ITC",40,"bold"),bg="#eaebc3")
     app_title.place(x=300,y=100)
-
-    # app_logo=Button(new_window,image="fitlogo2.jpg")
-    # app_logo.place(x=0,y=100)
     
-    def button1_clicked():  
+    icon=ImageTk.PhotoImage(Image.open("C:/Users/tejal/Downloads/fitlogo (1).jpg"))
+
+    Button(new_window, image=icon,borderwidth="3",bg="black").place(x=200, y=100)
+    
+    def button1_clicked(): 
+        global ws
+        global label_bmi
+        global label_bmi2
+
+        ws = Tk()
+        ws.title('BMI Calculator')
+        ws.geometry('1920x1080')
+        ws.config(bg='light blue')
+
+        label_bmi=Label(ws,text="BMI Calculator",font=("Ariel",24),borderwidth=3)
+        label_bmi.place(x=650,y=100)
+        label_bmi.config(padx=10,pady=10)
+
+        label_bmi2=Label(ws,text='''Your BMI is a measurement that is a ratio of your weight and height. 
+        It's a good way to gauge whether your weight is in healthy proportion to your height.'''
+        ,font=("HoloLens MDL2 Assets",25,"bold"),bg="light blue")
+        label_bmi2.place(x=300,y=180)
+        label_bmi2.config(padx=15,pady=15)
+
         def reset_entry():
             age_tf.delete(0,'end')
             height_tf.delete(0,'end')
@@ -57,7 +85,7 @@ def button_clicked():
             kg = int(weight_tf.get())
             m = int(height_tf.get())/100
             bmi = kg/(m*m)
-            bmi = round(bmi, 1)
+            bmi = round(bmi, 2)
             bmi_index(bmi)
 
         def bmi_index(bmi):
@@ -72,12 +100,7 @@ def button_clicked():
                 messagebox.showinfo('BMI-Tracker', f'BMI = {bmi} is Obesity') 
             else:
                 messagebox.showerror('BMI-Tracker', 'something went wrong!')   
-
-        ws = Tk()
-        ws.title('BMI Calculator')
-        ws.geometry('400x300')
-        ws.config(bg='light blue')
-
+            ws.mainloop()
         var = IntVar()
 
         frame = Frame(
@@ -90,7 +113,7 @@ def button_clicked():
 
         age_lb = Label(
            frame,
-           text="Enter Age (2 - 120)"
+           text=" Enter Age :",font=("Ariel",10,"bold")
         )
         age_lb.grid(row=1, column=1)
 
@@ -101,7 +124,7 @@ def button_clicked():
 
         gen_lb = Label(
             frame,
-            text='Select Gender'
+            text='Select Gender',font=("Ariel",10,"bold")
         )
         gen_lb.grid(row=2, column=1)
 
@@ -112,7 +135,7 @@ def button_clicked():
 
         male_rb = Radiobutton(
             frame2,
-            text = 'Male',
+            text = 'Male',font=("Ariel",10,"bold"),
             variable = var,
             value = 1
         )
@@ -120,7 +143,7 @@ def button_clicked():
 
         female_rb = Radiobutton(
             frame2,
-            text = 'Female',
+            text = 'Female',font=("Ariel",10,"bold"),
             variable = var,
             value = 2
         )
@@ -128,13 +151,13 @@ def button_clicked():
 
         height_lb = Label(
             frame,
-            text="Enter Height (cm)  "
+            text="Enter Height (cm): ",font=("Ariel",10,"bold")
         )
         height_lb.grid(row=3, column=1)
 
         weight_lb = Label(
             frame,
-            text="Enter Weight (kg)  ",
+            text="Enter Weight (kg): ",font=("Ariel",10,"bold")
 
         )
         weight_lb.grid(row=4, column=1)
@@ -156,30 +179,32 @@ def button_clicked():
 
         cal_btn = Button(
              frame3,
-             text='Calculate',
+             text='Calculate',font=("Ariel",10,"bold"),
              command=calculate_bmi
         )
         cal_btn.pack(side=LEFT)
 
         reset_btn = Button(
+
             frame3,
-            text='Reset',
+            text='Reset',font=("Ariel",10,"bold"),
             command=reset_entry
         )
         reset_btn.pack(side=LEFT)
 
         exit_btn = Button(
             frame3,
-            text='Exit',
+            text='Exit',font=("Ariel",10,"bold"),
             command=lambda:ws.destroy()
         )
         exit_btn.pack(side=RIGHT)
-    
+
+        ws.mainloop
+            
     def button2_clicked():
         root=Tk()
         root.title('Calories input and exercise')
-        # style= ttk.Style()
-        # style.theme_use('clam')
+        root.geometry("700x500")
 
         weight=Entry(root, width=30)
         height=Entry(root,width=30)
@@ -190,7 +215,7 @@ def button_clicked():
         def myclick1():
             mylabel1=Label(root, text="Your entered weight is " + weight.get())
             mylabel1.grid(row=0,column=2)
-        mybutton1= Button(root, text="Enter your weight (in kgs)", width=35, command=myclick1)
+        mybutton1= Button(root, text="Enter your weight (in kgs)", width=35)
         mybutton1.grid(row=0,column=0)
         w=weight.get()
 
@@ -198,7 +223,7 @@ def button_clicked():
         def myclick2():
             mylabel2=Label(root, text="Your entered height is " + height.get())
             mylabel2.grid(row=1,column=2)
-        mybutton2= Button(root, text="Enter your height (in cms)", width=35, command=myclick2)
+        mybutton2= Button(root, text="Enter your height (in cms)", width=35)
         mybutton2.grid(row=1,column=0)
         h=height.get()
 
@@ -206,7 +231,7 @@ def button_clicked():
         def myclick3():
             mylabel3=Label(root, text="Your entered age is " + age.get())
             mylabel3.grid(row=2,column=2)
-        mybutton3= Button(root, text="Enter your age",  width=35,command=myclick3)
+        mybutton3= Button(root, text="Enter your age",  width=35)
         mybutton3.grid(row=2,column=0)
         a=age.get()
 
@@ -214,7 +239,7 @@ def button_clicked():
         def myclick4():
             mylabel4=Label(root, text="Your entered gender is " + gender.get())
             mylabel4.grid(row=3,column=2)
-        mybutton4= Button(root, text="Enter your Gender (Male or Female)",  width=35,command=myclick4)
+        mybutton4= Button(root, text="Enter your Gender (Male or Female)",  width=35)
         mybutton4.grid(row=3,column=0)
         g=gender.get()
 
@@ -225,12 +250,12 @@ def button_clicked():
                 basal=int((10*w)+(6.25*h)-(5*a)+5)
             elif str(g).lower()=="female":
                 basal=int((10*w)+(6.25*h)-(5*a)-161)
-            mylabel5=Label(root, text="Your Basal Metabolic Rate has been calculated")
+            mylabel5=Label(root, text="   Your Basal Metabolic Rate is "+str(basal),width=35)
             mylabel5.grid(row=5,column=1)
             mylabel5=Label(root, text="Click on 'Daily Calorie Needs' to proceed")
             mylabel5.grid(row=6,column=1)
-        mybutton5=Button(root,text="Calculate Basal Metabolic rate", command=lambda: BMRcalc(float(weight.get()),float(height.get()),float(age.get()),gender.get()))
-        mybutton5.grid(row=4,column=1)
+        mybutton5=Button(root,text="Calculate Basal Metabolic rate",width=35, command=lambda: BMRcalc(float(weight.get()),float(height.get()),float(age.get()),gender.get()))
+        mybutton5.grid(row=4,column=0)
 
         def calorie():
             mylabel6=Label(root, text="Enter the appropriate number corresponding\nto your level of exercise")
@@ -270,14 +295,14 @@ def button_clicked():
                 mylabel13.grid(row=17,column=1,)
                 mylabel14=Label(root, text="To lose 0.5 kg per week you need\n " + str(int(totcal)-550) + "calories daily")
                 mylabel14.grid(row=18,column=1,)
-            mybutton6=Button(root,text="Calculate Daily Calorie Need", command=daily_calorie_needs)
-            mybutton6.grid(row=15,column=1)
+            mybutton6=Button(root,text="Calculate Daily Calorie Need",width=35, command=daily_calorie_needs)
+            mybutton6.grid(row=15,column=0)
 
-        mybutton5=Button(root,text="Daily Calorie Needs Calculation", command=calorie)
-        mybutton5.grid(row=7,column=1)
+        mybutton5=Button(root,text="Daily Calorie Needs Calculation",width=35, command=calorie)
+        mybutton5.grid(row=7,column=0)
+
 
         root.mainloop()
-
     def button3_clicked():
         def open_wl():
             style= ttk.Style()
@@ -447,34 +472,27 @@ def button_clicked():
         root.title('diet plan')
         # style= root.Style()
         # style.theme_use('clam')
-        b1=Button(root, text="Weight loss",command=open_wl).pack()
-        b2=Button(root, text='Weight gain',command=open_wg).pack()
+        b1=Button(root, text="Weight loss",command=open_wl).pack(pady=20)
+        b2=Button(root, text='Weight gain',command=open_wg).pack(pady=20)
         root.mainloop()
-
-    # logo2=Image.open("fitlogo.jpg")
-    # resize_l2=logo2.resize((150,150),Image.ANTIALIAS)
-    # new_logo2=ImageTk.PhotoImage(resize_l2)
-    logo_button=Button(new_window,text="123",width=10,height=5)
-    logo_button.place(x=160,y=100)
-    logo_button.config(padx=10,pady=10)
 
     button1=Button(new_window,text="BMI Tracker",width=20,height=10,background="black",foreground="white")
     button1.config(command=button1_clicked)
     button1.config(font=("Arieal",12,"bold"))
-    button1.place(x=1000,y=40)
+    button1.place(x=1200,y=40)
 
     button2=Button(new_window,text="Calorie Tracker",width=20,height=10,background="black",foreground="white")
     button2.config(command=button2_clicked)
     button2.config(font=("Arieal",12,"bold"))
-    button2.place(x=1000,y=280)
+    button2.place(x=1200,y=280)
 
     button3=Button(new_window,text="Diet Tracker",width=20,height=10,background="black",foreground="white")
     button3.config(command=button3_clicked)
     button3.config(font=("Arieal",12,"bold"))
-    button3.place(x=1000,y=510)
+    button3.place(x=1200,y=510)
     new_window.mainloop()
 
 
 my_button=Button(text="Yes2LiveHealthy",font=("Comic Sans MS",15,"bold"),command=button_clicked)
-my_button.place(x=550,y=600)
+my_button.place(x=700,y=600)
 window.mainloop()
